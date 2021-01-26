@@ -72,12 +72,10 @@ jobs:
 
 **密钥的配置步骤如下**：
 
-1. 在 GitHub 项目的 Settings -> Secrets 路径下配置好命名为 `GITEE_RSA_PRIVATE_KEY` 和 `GITEE_PASSWORD` 的两个密钥。
+1. 在 GitHub 项目的「​*Settings -> Secrets*」路径下配置好命名为 `GITEE_RSA_PRIVATE_KEY` 和 `GITEE_PASSWORD` 的两个密钥。
    其中：`GITEE_RSA_PRIVATE_KEY` 存放 `id_rsa` 私钥；`GITEE_PASSWORD` 存放 Gitee 帐号的密码。
-1. 在 GitHub 项目的 Setting -> Deploy Keys 路径下配置 SSH 公钥（即：`id_rsa.pub`），命名随意。
-1. 在 Gitee 的 [SSH 公钥](https://gitee.com/profile/sshkeys) 配置 SSH 公钥（即：`id_rsa.pub`），命名随意。
-
-注：SSH 公私钥的生成可以用命令 `ssh-keygen -t rsa -C "这里替换为你的邮箱"`
+1. 在 GitHub 项目的「_Setting -> Deploy Keys_」​ 路径下配置 SSH 公钥（即：`id_rsa.pub`），命名随意。
+1. 在 Gitee 的「[_安全设置 -> SSH 公钥_](https://gitee.com/profile/sshkeys)」​ 配置 SSH 公钥（即：`id_rsa.pub`），命名随意。
 
 ![](./images/add_secrets.png)
 
@@ -99,7 +97,7 @@ jobs:
 | 6   | Error: Unknown error occurred in login method, resp: ...                                                                                                                           | 登录出现未知错误，请在 [issues](https://github.com/yanglbme/gitee-pages-action/issues) 区反馈。                                                 |
 | 7   | Error: Rebuild page error, status code: xxx                                                                                                                                        | 更新 Pages 时状态码异常，请尝试再次触发 Action 执行。                                                                                           |
 | 8   | Error: HTTPSConnectionPool(host='gitee.com', port=443): Read timed out. (read timeout=6)                                                                                           | 网络请求出错，请尝试 Re-run jobs 。[#27](https://github.com/yanglbme/gitee-pages-action/issues/27)                                              |
-| 9   | git@github.com: Permission denied (publickey).<br>fatal: Could not read from remote repository.<br>Please make sure you have the correct access rights and the repository exists.. | SSH 公私钥配置有问题，请参照上文提及的密钥配置步骤进行相应配置。                                                                                |
+| 9   | git@github.com: Permission denied (publickey).<br>fatal: Could not read from remote repository.<br>Please make sure you have the correct access rights and the repository exists.. | SSH 公私钥配置有问题，请参照上文提及的密钥配置步骤进行相应配置。[#29](https://github.com/yanglbme/gitee-pages-action/issues/29)                                                                                |
 | ... | ...                                                                                                                                                                                | ...                                                                                                                                             |
 
 注：
@@ -107,6 +105,7 @@ jobs:
 1. `branch` 参数默认是 `master`，如果你是部署在 `gh-pages`(或者 `main`) 分支等等，务必指定 `branch: gh-pages`(或者 `branch: main`)。
 1. `branch` 对应的分支，必须在仓库中实际存在，请不要随意（不）指定分支，否则可能导致 Gitee Pages 站点出现 404 无法访问的情况。
 1. 示例中触发 Action 执行的事件设置为 `page_build`，你也可以根据实际情况指定为其它的触发事件。请参考 [Events that trigger workflows](https://docs.github.com/en/free-pro-team@latest/actions/reference/events-that-trigger-workflows)。
+1. SSH 公私钥的生成可以用命令 `ssh-keygen -t rsa -C "这里替换为你的邮箱"`。
 
 ## 谁在使用
 
